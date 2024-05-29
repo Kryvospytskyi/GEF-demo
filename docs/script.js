@@ -13,43 +13,6 @@ function hideMenu(menu) {
         submenu.style.display = 'none';
     }
 }
-
-function newFile() {
-    alert('Створення нового файлу');
-}
-
-function openFile() {
-    alert('Відкриття файлу');
-}
-
-function saveFile() {
-    alert('Збереження файлу');
-}
-
-function undo() {
-    alert('Скасувати дію');
-}
-
-function redo() {
-    alert('Повторити дію');
-}
-
-function zoomIn() {
-    alert('Збільшення');
-}
-
-function zoomOut() {
-    alert('Зменшення');
-}
-
-function closeWindow() {
-    alert('Закриття вікна');
-}
-
-function about() {
-    alert('Про програму: Графічний редактор формул версія 0.0.1');
-}
-
 function selectFormula() {
     const formula = document.getElementById('formulas').value;
     const formulaInputs = document.getElementById('formula-inputs');
