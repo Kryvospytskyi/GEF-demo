@@ -1,0 +1,17 @@
+{ 
+  "name" :  "gef-demo" , 
+  "main" :  "index.html",
+  "scripts": {
+    "start": "nw ."
+  },
+  "version": "1.0",
+  "window": {
+    "title": "Graphic editor of formulas - demo",
+    "toolbar": true,
+    "position": "center"
+  },
+  "webkit": {
+    "plugin": true
+  }
+  
+}

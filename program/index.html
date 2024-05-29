@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Графічний редактор формул</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Навігаційна панель -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <a class="navbar-brand" href="#">Меню</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span> <!-- Іконка гамбургера -->
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown mx-2">
+                    <a class="nav-link dropdown-toggle" href="#" id="fileMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Файл
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="fileMenu">
+                        <a class="dropdown-item" href="#" onclick="createDocument()">Створити</a>
+                        <a class="dropdown-item" href="#" onclick="saveContent()">Зберегти</a> <!-- Додана кнопка "Зберегти" -->
+                        <input type="file" class="dropdown-item" style="display: none;" id="fileInput" onchange="openFile(event)">
+                        <label class="dropdown-item" for="fileInput" style="cursor: pointer;">Відкрити</label>
+                    </div>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link" href="#">Інструменти</a>
+                </li>
+                <li class="nav-item dropdown mx-2">
+                    <a class="nav-link dropdown-toggle" href="#" id="formulasMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Формули
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="formulasMenu">
+                        <a class="dropdown-item" href="#">Провести розрахунки</a>
+                    </div>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link href="#">Таблиці</a>
+                </li>
+                <li class="nav-item dropdown mx-2">
+                    <a class="nav-link dropdown-toggle" href="#" id="helpMenu" role="button" data-toggle="dropdown" aria-haspopup="true">
+                        Довідка
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="helpMenu">
+                        <a class="dropdown-item" href="#">FAQ</a>
+                        <a class="dropdown-item" href="#" onclick="openAbout()">Про програму</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+<div class="editor-container">
+    <!-- Велике поле для вводу тексту -->
+    <div class="editor-container">
+        <textarea id="documentTextArea" class="textarea-large" readonly></textarea>
+    </div>
+    <div class="editor-header">
+        Графічний редактор формул
+    </div>
+    <div class="editor-body">
+    <!-- Робоча область для редагування формул -->
+        <div class="formula-selector">
+            <label for="formulas">Оберіть формулу:</label>
+            <select id="formulas" name="formulas" onchange="selectFormula()">
+                <option value="">-- Виберіть формулу --</option>
+                <option value="quadratic">Квадратне рівняння</option>
+                <option value="pythagorean">Теорема Піфагора</option>
+                <option value="circle_area">Площа кола</option>
+                <option value="square_table">Таблиця квадратів</option>
+            </select>
+        </div>
+        <div class="formula-inputs" id="formula-inputs"></div>
+        <button onclick="calculate()">Розрахувати</button>
+        <div class="result" id="result"></div>
+    </div>
+</div>
+
+    <!-- Підключення JS, Popper.js та jQuery Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
