@@ -13,6 +13,8 @@ function hideMenu(menu) {
         submenu.style.display = 'none';
     }
 }
+
+
 function selectFormula() {
     const formula = document.getElementById('formulas').value;
     const formulaInputs = document.getElementById('formula-inputs');
@@ -41,6 +43,31 @@ function selectFormula() {
             formulaInputs.innerHTML = `
                 <label>До якого числа: <input type="number" id="max-number" value="10"></label>
             `;
+            break;
+            case 'multiplication_formula':
+            formulaInputs.innerHTML = `
+                <label>Оберіть формулу:
+                    <select id="multiplication-formula-type">
+                        <option value="square_sum">Квадрат суми (a+b)²</option>
+                        <option value="square_difference">Квадрат різниці (a-b)²</option>
+                        <option value="product_sum_difference">Добуток суми і різниці (a+b)(a-b)</option>
+                    </select>
+                </label>
+                <label>a: <input type="number" id="a"></label>
+                <label>b: <input type="number" id="b"></label>
+            `;
+            break;
+            case 'power':
+            formulaInputs.innerHTML = `
+                <label>Основа (a): <input type="number" id="a"></label>
+                <label>Показник (n): <input type="number" id="n"></label>
+            `;
+            break;
+            case 'logarithm':
+                formulaInputs.innerHTML = `
+                    <label>Основа (b): <input type="number" id="b" value="10"></label>
+                    <label>Аргумент (x): <input type="number" id="x"></label>
+            ` ;
             break;
         default:
             break;
@@ -83,6 +110,36 @@ function calculate() {
             const maxNumber = parseInt(document.getElementById('max-number').value);
             result = generateSquareTable(maxNumber);
             break;
+        case 'multiplication_formula':
+            const formulaType = document.getElementById('multiplication-formula-type').value;
+            const a2 = parseFloat(document.getElementById('a').value);
+            const b2 = parseFloat(document.getElementById('b').value);
+    
+            switch (formulaType) {
+                case 'square_sum':
+                    result = `(a+b)² = ${a2 * a2} + 2 * ${a2} * ${b2} + ${b2 * b2} = ${(a2 + b2) * (a2 + b2)}`;
+                    break;
+                case 'square_difference':
+                    result = `(a-b)² = ${a2 * a2} - 2 * ${a2} * ${b2} + ${b2 * b2} = ${(a2 - b2) * (a2 - b2)}`;
+                    break;
+                case 'product_sum_difference':
+                    result = `(a+b)(a-b) = ${a2 * a2} - ${b2 * b2} = ${(a2 + b2) * (a2 - b2)}`;
+                    break;
+                default:
+                    result = 'Невідома формула';
+                    break;
+            }
+            break;
+        case 'power':
+            const base = parseFloat(document.getElementById('a').value);
+            const exponent = parseInt(document.getElementById('n').value);
+            result = `${base}^${exponent} = ${Math.pow(base, exponent)}`;
+            break;
+        case 'logarithm':
+            const bLog = parseFloat(document.getElementById('b').value);
+            const xLog = parseFloat(document.getElementById('x').value);
+            result = `log_${bLog}(${xLog}) = ${Math.log(xLog) / Math.log(bLog)}`;
+            break;   
         default:
             result = 'Будь ласка, оберіть формулу.';
             break;
